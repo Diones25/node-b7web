@@ -62,3 +62,15 @@ const result = schema.safeParse(data);
 // })
 
 // console.log(res)
+
+//Campos opcionais
+const patern = z.object({
+  name: z.string(),
+  age: z.number().optional()
+});
+
+const res = patern.parse({
+  name: 'Diones'
+})
+
+console.log(res)
