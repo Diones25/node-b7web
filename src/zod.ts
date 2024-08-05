@@ -3,13 +3,34 @@ import z from 'zod';
 const schema = z.object({
   name: z.string().min(2),
   email: z.string().email(),
-  age: z.number().min(18).max(120)
+  age: z.number().min(18).max(120),
+  status: z.boolean(),
+  characteristics: z.array(
+    z.object({
+      name: z.string(),
+      value: z.number()
+    })
+  )
 });
 
-let data = {
+type User = z.infer<typeof schema>;
+
+
+let data: User = {
   name: "Diones",
   email: "diones@gmail.com.br",
-  age: 130
+  age: 130,
+  status: true,
+  characteristics: [
+    {
+      name: 'Mana',
+      value: 10
+    },
+    {
+      name: 'Shielding',
+      value: 15
+    }
+  ]
 }
 
 const result = schema.safeParse(data);
