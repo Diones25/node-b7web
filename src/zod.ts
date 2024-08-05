@@ -66,11 +66,13 @@ const result = schema.safeParse(data);
 //Campos opcionais
 const patern = z.object({
   name: z.string(),
-  age: z.number().optional()
+  age: z.number().optional(),
+  sobreNome: z.literal('Alves')
 });
 
 const res = patern.parse({
-  name: 'Diones'
+  name: 'Diones',
+  sobreNome: 'Alves'
 })
 
 console.log(res)
