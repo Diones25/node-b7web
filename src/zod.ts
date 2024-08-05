@@ -35,12 +35,30 @@ let data: User = {
 
 const result = schema.safeParse(data);
 
-if (result.success) {
-  console.log("Deu certo")
-  console.log(result.data)
-}
-else {
-  console.log("Deu problema")
-}
+// if (result.success) {
+//   console.log("Deu certo")
+//   console.log(result.data)
+// }
+// else {
+//   console.log("Deu problema")
+// }
 
 //console.log(result)
+
+//Tipos primitivos
+// const patern = z.object({
+//   name: z.string(),
+//   age: z.number(),
+//   active: z.boolean(),
+//   date: z.date(),
+//   qualquer: z.any(),
+//   nunca: z.never()
+// });
+
+// const res = patern.parse({
+//   name: 'Diones',
+//   age: 35,
+//   active: true
+// })
+
+// console.log(res)
