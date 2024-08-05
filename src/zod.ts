@@ -64,15 +64,35 @@ const result = schema.safeParse(data);
 // console.log(res)
 
 //Campos opcionais
+// const patern = z.object({
+//   name: z.string(),
+//   age: z.number().optional(),
+//   sobreNome: z.literal('Alves')
+// });
+
+// const res = patern.parse({
+//   name: 'Diones',
+//   sobreNome: 'Alves'
+// })
+
+// console.log(res)
+
+
+//Validations, Transformations
 const patern = z.object({
-  name: z.string(),
-  age: z.number().optional(),
-  sobreNome: z.literal('Alves')
+  name: z.string().toUpperCase(), //valida que é uma string e transforma em uma string com letras maiúsculas
+  email: z.string().email().toLowerCase(), //valida que é uma string, email e transforma em uma string com letras minusculas
+  description: z.string().trim(),//valida se é string e retira os espalos em branco no inicio da string e no final
+  cidade: z.string().min(3), //valida se a cidade tem no mínimo 3 caracteres
+  regra: z.string().startsWith('wp_'),//string que começa com 'wp_'
+  imagem: z.string().endsWith('.jpg') //string que termina com '.jpg'
 });
 
 const res = patern.parse({
   name: 'Diones',
-  sobreNome: 'Alves'
+  email: 'teste@gmail.com',
+  description: '   alguma qualquer   ',
+  cidade: 'ipu'
 })
 
 console.log(res)
