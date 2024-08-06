@@ -1,7 +1,7 @@
 import { RequestHandler } from "express";
 
 const interferir: RequestHandler = (req, res, next) => {
-  const logged = false;
+  const logged = true;
 
   if (logged) {
     next()

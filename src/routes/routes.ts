@@ -1,5 +1,6 @@
 import { Request, Response, Router } from 'express';
 import interferir from '../middlewares/interferir';
+import userController from '../controllers/controller'
 
 const router = Router();
 
@@ -13,5 +14,7 @@ router.get('/ping', (req: Request, res: Response) => {
   console.log("executou o ping")
   res.json({ pong: true });
 })
+
+router.post('/user', userController.createUser);
 
 export default router;
