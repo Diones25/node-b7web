@@ -112,7 +112,7 @@ const result = schema.safeParse(data);
 
 // console.log(res)
 
-
+//Mensagens de erro
 const patern = z.object({
   email: z.string({
     required_error: 'E-mail é obrigatório',
