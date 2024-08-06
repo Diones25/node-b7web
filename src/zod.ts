@@ -113,20 +113,33 @@ const result = schema.safeParse(data);
 // console.log(res)
 
 //Mensagens de erro
+// const patern = z.object({
+//   email: z.string({
+//     required_error: 'E-mail é obrigatório',
+//     invalid_type_error: 'O e-mail precisa ser uma string'
+//   }).email('E-mail inválido'),
+//   age: z.number({
+//     required_error: 'Idade é obrigatória',
+//     invalid_type_error: 'Idade precisa ser um número'
+//   }).gte(18, 'Precisa ser maior de idade')
+// });
+
+// const res = patern.parse({
+//   age: 18,
+//   email: 'teste@gmail.com'
+// })
+
+// console.log(res)
+
+
+
+//Enum
 const patern = z.object({
-  email: z.string({
-    required_error: 'E-mail é obrigatório',
-    invalid_type_error: 'O e-mail precisa ser uma string'
-  }).email('E-mail inválido'),
-  age: z.number({
-    required_error: 'Idade é obrigatória',
-    invalid_type_error: 'Idade precisa ser um número'
-  }).gte(18, 'Precisa ser maior de idade')
+  fuel: z.enum(['Gasolina', 'Etanol', 'Diesel'])
 });
 
 const res = patern.parse({
-  age: 18,
-  email: 'teste@gmail.com'
+  fuel: 'Gasolina'
 })
 
 console.log(res)
