@@ -16,5 +16,6 @@ router.get('/ping', (req: Request, res: Response) => {
 })
 
 router.post('/user', userController.createUser);
+router.get('/posts', userController.getPosts);
 
 export default router;
