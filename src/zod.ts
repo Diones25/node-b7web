@@ -146,13 +146,33 @@ const result = schema.safeParse(data);
 
 
 //Interseção
-const person = z.object({
-  name: z.string()
+// const person = z.object({
+//   name: z.string()
+// });
+
+// const employee = z.object({
+//   role: z.string()
+// })
+
+// //Junção de dois objetos
+// const employedPerson = z.intersection(person, employee); 
+
+
+
+
+//Unions
+const pattern = z.object({
+  age: z.union([z.string(), z.number()])
 });
 
-const employee = z.object({
-  role: z.string()
+const validation = pattern.safeParse({
+  age: 90
 })
 
-//Junção de dois objetos
-const employedPerson = z.intersection(person, employee); 
+if (validation.error) {
+  console.log(validation.error);  
+}
+else {
+  console.log(validation);
+}
+
