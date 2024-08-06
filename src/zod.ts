@@ -102,12 +102,31 @@ const result = schema.safeParse(data);
 //Lower Than = LT
 //Greater Than or Equal = GTE
 //Greater Than or Equak = LTE
+// const patern = z.object({
+//   age: z.number().gte(18).int().positive()  //Idade maior que 18 anos, numero inteiro e positvo
+// });
+
+// const res = patern.parse({
+//   age: 18
+// })
+
+// console.log(res)
+
+
 const patern = z.object({
-  age: z.number().gte(18).int().positive()  //Idade maior que 18 anos, numero inteiro e positvo
+  email: z.string({
+    required_error: 'E-mail é obrigatório',
+    invalid_type_error: 'O e-mail precisa ser uma string'
+  }).email('E-mail inválido'),
+  age: z.number({
+    required_error: 'Idade é obrigatória',
+    invalid_type_error: 'Idade precisa ser um número'
+  }).gte(18, 'Precisa ser maior de idade')
 });
 
 const res = patern.parse({
-  age: 18
+  age: 18,
+  email: 'teste@gmail.com'
 })
 
 console.log(res)
