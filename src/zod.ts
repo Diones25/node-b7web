@@ -133,13 +133,26 @@ const result = schema.safeParse(data);
 
 
 
-//Enum
-const patern = z.object({
-  fuel: z.enum(['Gasolina', 'Etanol', 'Diesel'])
+// //Enum
+// const patern = z.object({
+//   fuel: z.enum(['Gasolina', 'Etanol', 'Diesel'])
+// });
+
+// const res = patern.parse({
+//   fuel: 'Gasolina'
+// })
+
+// console.log(res)
+
+
+//Interseção
+const person = z.object({
+  name: z.string()
 });
 
-const res = patern.parse({
-  fuel: 'Gasolina'
+const employee = z.object({
+  role: z.string()
 })
 
-console.log(res)
+//Junção de dois objetos
+const employedPerson = z.intersection(person, employee); 
