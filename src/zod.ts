@@ -155,7 +155,7 @@ const result = schema.safeParse(data);
 // })
 
 // //Junção de dois objetos
-// const employedPerson = z.intersection(person, employee); 
+// const employedPerson = z.intersection(person, employee);
 
 
 
@@ -170,7 +170,7 @@ const result = schema.safeParse(data);
 // })
 
 // if (validation.error) {
-//   console.log(validation.error);  
+//   console.log(validation.error);
 // }
 // else {
 //   console.log(validation);
@@ -179,17 +179,40 @@ const result = schema.safeParse(data);
 
 
 //Promises
+// const pattern = z.object({
+//   age: z.number()
+// });
+
+// const promisePatern = z.promise(pattern);
+
+// const apiResponse = Promise.resolve({
+//   age: 90
+// })
+
+// const validation = promisePatern.safeParse(apiResponse)
+
+// if (validation.error) {
+//   console.log(validation.error);
+//   console.log(validation.error.errors.map(err => err.message));
+// }
+// else {
+//   console.log(validation);
+// }
+
+
+
+//Função Transform
 const pattern = z.object({
-  age: z.number()
+  name: z.string().transform(val => val.length),
+  email: z.string().email().transform((value) => {
+    return value.split('@')[1]
+  })
 });
 
-const promisePatern = z.promise(pattern);
-
-const apiResponse = Promise.resolve({
-  age: 90
+const validation = pattern.safeParse({
+  name: 'diones',
+  email: 'soprte@diones.com.br'
 })
-
-const validation = promisePatern.safeParse(apiResponse)
 
 if (validation.error) {
   console.log(validation.error);
