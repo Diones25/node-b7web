@@ -161,18 +161,40 @@ const result = schema.safeParse(data);
 
 
 //Unions
+// const pattern = z.object({
+//   age: z.union([z.string(), z.number()])
+// });
+
+// const validation = pattern.safeParse({
+//   age: 90
+// })
+
+// if (validation.error) {
+//   console.log(validation.error);  
+// }
+// else {
+//   console.log(validation);
+// }
+
+
+
+//Promises
 const pattern = z.object({
-  age: z.union([z.string(), z.number()])
+  age: z.number()
 });
 
-const validation = pattern.safeParse({
+const promisePatern = z.promise(pattern);
+
+const apiResponse = Promise.resolve({
   age: 90
 })
 
+const validation = promisePatern.safeParse(apiResponse)
+
 if (validation.error) {
-  console.log(validation.error);  
+  console.log(validation.error);
+  console.log(validation.error.errors.map(err => err.message));
 }
 else {
   console.log(validation);
 }
-
